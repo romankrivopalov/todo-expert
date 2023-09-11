@@ -1,10 +1,29 @@
-import Header from './components/Header/Header.jsx';
+import { Routes, Route } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
+import Welcome from './components/Welcome/Welcome.jsx';
+import MainPage from './components/MainPage/MainPage.jsx';
 
 function App() {
+
+  const loggedIn = false;
+
   return (
-    <>
-      <Header />
-    </>
+    <Routes>
+
+      <Route
+        path='/'
+        element={<ProtectedRoute
+          element={MainPage}
+          loggedIn={loggedIn}
+        />}
+      />
+
+      <Route
+        path='/welcome'
+        element={<Welcome />}
+      />
+
+    </Routes>
   );
 }
 
