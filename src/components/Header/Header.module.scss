@@ -1,7 +1,29 @@
 .header {
   margin: 0;
-  padding: 16px;
-  width: 100%;
+  padding: 16px 0;
   color: var(--color-system-white);
   background-color: var(--color-system-blue);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.logo {
+  display: block;
+  width: 32px;
+  height: 32px;
+}
+
+.title {
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
 }
