@@ -12,6 +12,7 @@ const MainPage = ({ onSignout }) => {
   const [ today, setToday ] = useState(1);
   const [ calendar, setCalendar ] = useState([]);
   const [ isShowCalendar, setIsShowCalendar ] = useState(false);
+  const [ isShowTime, setIsShowTime ] = useState(false);
   const [ time, setTime ] = useState({ date: null, time: null });
 
   useEffect(() => {
@@ -21,14 +22,36 @@ const MainPage = ({ onSignout }) => {
     setCalendar(dates.getAllDaysOfMonth());
   }, []);
 
+  useEffect(() => {
+
+  }, [time])
+
+  const handleShowTime = () => {
+    setIsShowTime(!isShowTime);
+
+    if (isShowCalendar) {
+      handleShowTime();
+    }
+  }
+
   const handleShowCalendar = () => {
     setIsShowCalendar(!isShowCalendar);
+
+    if (isShowTime) {
+      handleShowTime();
+    }
+  }
+
+  const handleSetTime = (data) => {
+    setTime({ ...time, time: data.substring(-1, 5) });
+
+    setIsShowTime(false);
   }
 
   const handleSetDay = (data) => {
-    const day = data.length > 1 ? data : `0${data}`;
+    const day = data.toString().length > 1 ? data : `0${data}`;
 
-    setTime({ ...time, date: `${day}.${month.num}.${year.toString().substring(2, 4)}` })
+    setTime({ ...time, date: `${day}.${month.num}.${year.toString().substring(2, 4)}` });
 
     setIsShowCalendar(false);
   }
@@ -64,13 +87,14 @@ const MainPage = ({ onSignout }) => {
                 type="button" />
               <button
                 className={cn(s.btn, s.btn_type_time)}
+                onClick={handleShowTime}
                 type="button" />
-              {(time.date || time.time ) &&
+              {(time.date || time.time) &&
                 <button
                   className={s.btn}
                   type='button'
                 >
-                  {time.date} {time.time}
+                  {time.date} {time.date && time.time ? ':' : ''} {time.time}
                 </button>
               }
               <div className={cn(s.date, isShowCalendar ? s.date_show : '')} datatype='calendar'>
@@ -142,6 +166,17 @@ const MainPage = ({ onSignout }) => {
                   </ul>
                 </div>
               </div>
+
+              <ul className={cn(s.time, isShowTime ? s.time_show : '')}>
+                <li className={s.hours} onClick={() => handleSetTime('03:00')}>03:00 AM</li>
+                <li className={s.hours} onClick={() => handleSetTime('06:00')}>06:00 AM</li>
+                <li className={s.hours} onClick={() => handleSetTime('09:00')}>09:00 AM</li>
+                <li className={s.hours} onClick={() => handleSetTime('12:00')}>12:00 AM</li>
+                <li className={s.hours} onClick={() => handleSetTime('03:00')}>03:00 PM</li>
+                <li className={s.hours} onClick={() => handleSetTime('06:00')}>06:00 PM</li>
+                <li className={s.hours} onClick={() => handleSetTime('09:00')}>09:00 PM</li>
+                <li className={s.hours} onClick={() => handleSetTime('12:00')}>12:00 PM</li>
+              </ul>
             </div>
             <button className={cn(s.btn, s.btn_type_submit)}>
               Add
