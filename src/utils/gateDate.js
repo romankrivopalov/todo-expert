@@ -24,7 +24,9 @@ class Dates {
   }
 
   getMonth = () => {
-    return this.months[this.now.getMonth()];
+    const month = this.now.getMonth();
+
+    return { name: this.months[this.now.getMonth()], num: month.length > 1 ? month : `0${month}`};
   }
 
   // метод возвращает массив дат по неделям

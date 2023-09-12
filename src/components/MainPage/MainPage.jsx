@@ -12,21 +12,25 @@ const MainPage = ({ onSignout }) => {
   const [ today, setToday ] = useState(1);
   const [ calendar, setCalendar ] = useState([]);
   const [ isShowCalendar, setIsShowCalendar ] = useState(false);
+  const [ time, setTime ] = useState({ date: null, time: null });
 
   useEffect(() => {
     setMonth(dates.getMonth());
     setYear(dates.getYear());
     setToday(dates.getNumDay());
     setCalendar(dates.getAllDaysOfMonth());
-    console.log(today)
   }, []);
 
   const handleShowCalendar = () => {
     setIsShowCalendar(!isShowCalendar);
   }
 
-  const handleSetDay = () => {
+  const handleSetDay = (data) => {
+    const day = data.length > 1 ? data : `0${data}`;
 
+    setTime({ ...time, date: `${day}.${month.num}.${year.toString().substring(2, 4)}` })
+
+    setIsShowCalendar(false);
   }
 
   const handleAddTask = () => {
@@ -61,8 +65,16 @@ const MainPage = ({ onSignout }) => {
               <button
                 className={cn(s.btn, s.btn_type_time)}
                 type="button" />
-              <div className={cn(s.date, isShowCalendar ? s.date_show : '')}>
-                <span className={s.month}>{month} {year}</span>
+              {(time.date || time.time ) &&
+                <button
+                  className={s.btn}
+                  type='button'
+                >
+                  {time.date} {time.time}
+                </button>
+              }
+              <div className={cn(s.date, isShowCalendar ? s.date_show : '')} datatype='calendar'>
+                <span className={s.month}>{ month && month.name } {year}</span>
                 <div className={s.calendar}>
                   <ul className={s.row}>
                     <li className={s.week}>mo</li>
@@ -78,7 +90,7 @@ const MainPage = ({ onSignout }) => {
                       <li
                       key={day}
                       className={cn(s.day, (day < today || day > 7) ? s.day_color_gray : '')}
-                      onClick={handleSetDay}
+                      onClick={() => {if (!(day < today || day > 7)) handleSetDay(day)}}
                       >
                         {day}
                       </li>
@@ -89,7 +101,7 @@ const MainPage = ({ onSignout }) => {
                       <li
                       key={day}
                       className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={handleSetDay}
+                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
                       >
                         {day}
                       </li>
@@ -100,7 +112,7 @@ const MainPage = ({ onSignout }) => {
                       <li
                       key={day}
                       className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={handleSetDay}
+                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
                       >
                         {day}
                       </li>
@@ -111,7 +123,7 @@ const MainPage = ({ onSignout }) => {
                       <li
                       key={day}
                       className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={handleSetDay}
+                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
                       >
                         {day}
                       </li>
@@ -121,8 +133,8 @@ const MainPage = ({ onSignout }) => {
                     {calendar[4] && calendar[4].map(day =>
                       <li
                       key={day}
-                      className={cn(s.day, (day < today && day > 7) ? s.day_color_gray : '')}
-                      onClick={handleSetDay}
+                      className={cn(s.day, (day < today && day < 7) ? s.day_color_gray : '')}
+                      onClick={() => {if (!(day < today && day < 7)) handleSetDay(day)}}
                       >
                         {day}
                       </li>
