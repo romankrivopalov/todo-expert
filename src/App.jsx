@@ -1,10 +1,12 @@
 import { Routes, Route } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
-import Welcome from './components/Welcome/Welcome.jsx';
+import Login from './components/Login/Login.jsx';
+import Register from './components/Register/Register.jsx';
 import MainPage from './components/MainPage/MainPage.jsx';
 
 function App() {
-
+  const navigate = useNavigate()
   const loggedIn = false;
 
   return (
@@ -19,8 +21,13 @@ function App() {
       />
 
       <Route
-        path='/welcome'
-        element={<Welcome />}
+        path='/signin'
+        element={<Login navigate={navigate} />}
+      />
+
+      <Route
+        path='/signup'
+        element={<Register navigate={navigate} />}
       />
 
     </Routes>
