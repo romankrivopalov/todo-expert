@@ -3,7 +3,7 @@ import AuthForm from '../AuthForm/AuthForm.jsx';
 import s from './Register.module.scss';
 import fakeAuth from '../../utils/fakeAuth.js';
 
-const Register = ({ navigate }) => {
+const Register = ({ navigate, setCurrentUser }) => {
   const [ values, setValues ] = useState({'name': '', 'email': '', 'password': ''});
 
   const handleChange = ({ target }) => {
@@ -18,7 +18,7 @@ const Register = ({ navigate }) => {
       .then(data => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
-          // setLoggedIn(true);
+          setCurrentUser(true);
 
           navigate("/");
         }

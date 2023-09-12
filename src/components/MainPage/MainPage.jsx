@@ -1,12 +1,9 @@
 import Header from '../Header/Header.jsx';
-import s from './MainPage.module.scss';
 
-const MainPage = () => {
-  return (
-    <>
-      <Header />
-    </>
-  )
-}
+const MainPage = ({ onSignout }) => (
+  <>
+    <Header onSignout={onSignout} />
+  </>
+)
 
 export default MainPage

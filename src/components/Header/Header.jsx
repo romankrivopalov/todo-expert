@@ -3,7 +3,7 @@ import BtnLogOut from '../BtnLogOut/BtnLogOut.jsx';
 import logo from '../../assets/icon-logo-white.svg';
 import s from './Header.module.scss';
 
-const Header = () => {
+const Header = ({ onSignout }) => {
   return (
     <header className={s.header}>
       <Container>
@@ -13,7 +13,7 @@ const Header = () => {
             <h1 className={s.title}>ToDo Expert</h1>
           </div>
           <div className={s.wrapper}>
-            <BtnLogOut />
+            <BtnLogOut onSignout={onSignout} />
           </div>
         </div>
       </Container>

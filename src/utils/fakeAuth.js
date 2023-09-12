@@ -28,14 +28,13 @@ class FakeAuth {
   }
 
   checkValidityUser = (jwt) => {
-    return fetch(`${this._baseUrl}/users/me`, {
-      method: 'GET',
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`
-      }
-    })
-    .then(res => res.ok ? res.json() : Promise.reject(`Eroor ${res.status}`))
+    if (jwt === 'gqef4l82hn14sejtjoa') {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve({ token: 'gqef4l82hn14sejtjoa' })
+        }, 600)
+      })
+    }
   }
 }
 

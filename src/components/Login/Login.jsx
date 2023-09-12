@@ -3,7 +3,7 @@ import AuthForm from '../AuthForm/AuthForm.jsx';
 import s from './Login.module.scss';
 import fakeAuth from '../../utils/fakeAuth.js';
 
-const Login = ({ navigate }) => {
+const Login = ({ navigate, setCurrentUser }) => {
   const [ values, setValues ] = useState({'email': '', 'password': ''});
 
   const handleChange = ({ target }) => {
@@ -17,6 +17,7 @@ const Login = ({ navigate }) => {
       .then(data => {
         if (data.token) {
           localStorage.setItem('jwt', data.token);
+          setCurrentUser(true);
 
           navigate("/");
         }
