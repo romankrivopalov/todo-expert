@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Container from '../Container/Container.jsx';
 import Header from '../Header/Header.jsx';
+import Calendar from '../Calendar/Calendar.jsx';
 import s from './MainPage.module.scss';
 import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
@@ -22,13 +23,11 @@ const MainPage = ({ onSignout }) => {
     setCalendar(dates.getAllDaysOfMonth());
   }, []);
 
-  useEffect(() => {
-
-  }, [time])
-
+  // показать окно с календарем
   const handleShowTime = () => {
     setIsShowTime(!isShowTime);
 
+    // закрытие окна при повторном нажатии
     if (isShowCalendar) {
       handleShowTime();
     }
@@ -97,75 +96,15 @@ const MainPage = ({ onSignout }) => {
                   {time.date} {time.date && time.time ? ':' : ''} {time.time}
                 </button>
               }
-              <div className={cn(s.date, isShowCalendar ? s.date_show : '')} datatype='calendar'>
-                <span className={s.month}>{ month && month.name } {year}</span>
-                <div className={s.calendar}>
-                  <ul className={s.row}>
-                    <li className={s.week}>mo</li>
-                    <li className={s.week}>tu</li>
-                    <li className={s.week}>we</li>
-                    <li className={s.week}>th</li>
-                    <li className={s.week}>fr</li>
-                    <li className={s.week}>sa</li>
-                    <li className={s.week}>su</li>
-                  </ul>
-                  <ul className={s.row}>
-                    {calendar[0] && calendar[0].map(day =>
-                      <li
-                      key={day}
-                      className={cn(s.day, (day < today || day > 7) ? s.day_color_gray : '')}
-                      onClick={() => {if (!(day < today || day > 7)) handleSetDay(day)}}
-                      >
-                        {day}
-                      </li>
-                    )}
-                  </ul>
-                  <ul className={s.row}>
-                    {calendar[1] && calendar[1].map(day =>
-                      <li
-                      key={day}
-                      className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
-                      >
-                        {day}
-                      </li>
-                    )}
-                  </ul>
-                  <ul className={s.row}>
-                    {calendar[2] && calendar[2].map(day =>
-                      <li
-                      key={day}
-                      className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
-                      >
-                        {day}
-                      </li>
-                    )}
-                  </ul>
-                  <ul className={s.row}>
-                    {calendar[3] && calendar[3].map(day =>
-                      <li
-                      key={day}
-                      className={cn(s.day, day < today ? s.day_color_gray : '')}
-                      onClick={() => {if (!(day < today)) handleSetDay(day)}}
-                      >
-                        {day}
-                      </li>
-                    )}
-                  </ul>
-                  <ul className={s.row}>
-                    {calendar[4] && calendar[4].map(day =>
-                      <li
-                      key={day}
-                      className={cn(s.day, (day < today && day < 7) ? s.day_color_gray : '')}
-                      onClick={() => {if (!(day < today && day < 7)) handleSetDay(day)}}
-                      >
-                        {day}
-                      </li>
-                    )}
-                  </ul>
-                </div>
-              </div>
+
+              <Calendar
+                year={year}
+                month={month}
+                today={today}
+                calendar={calendar}
+                isShowCalendar={isShowCalendar}
+                handleSetDay={handleSetDay}
+              />
 
               <ul className={cn(s.time, isShowTime ? s.time_show : '')}>
                 <li className={s.hours} onClick={() => handleSetTime('03:00')}>03:00 AM</li>
