@@ -2,7 +2,7 @@ import { useState } from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
-const Task = ({ value }) => {
+const Task = ({ data }) => {
   const [ isCompliteTask, setIsCompliteTask ] = useState(false);
   const [ isActiveEditBtn, setIsActiveEditBtn ] = useState(true);
   const [ isDisabledInput, setIsDisabledInput ] = useState(true);
@@ -29,21 +29,22 @@ const Task = ({ value }) => {
   return (
     <li className={s.task}>
       <input
-        id="item-checkbox"
+        id={`item-checkbox-${data.title}-${data.date.date}-${data.date.time}`}
         type="checkbox"
         checked={isCompliteTask}
-        onChange={handleToggleChecbox}
+        onChange={() => handleToggleChecbox()}
         className={s.checkbox}
       />
       <label
-        htmlFor="item-checkbox"
+        htmlFor={`item-checkbox-${data.title}-${data.date.date}-${data.date.time}`}
         className={s.checkbox__label}
       />
       <div className={s.content}>
-        <input className={s.input} disabled={isDisabledInput} value={value} type="text" />
+        <input className={s.input} disabled={isDisabledInput} value={data.title} type="text" />
         <div className={s.wrapper}>
           <span className={s.date}>
-            14.08.23 : 15:00
+            {/* {console.log(data)} */}
+            {data.date.date}{data.date.time && `: ${data.date.time}`}
           </span>
           <div className={s.btns}>
             <button

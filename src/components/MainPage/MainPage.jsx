@@ -9,6 +9,7 @@ import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
 
 const MainPage = ({ onSignout }) => {
+  const [ allTasks, setAllTasks ] = useState([]);
   const [ values, setValues ] = useState({'task': ''});
   const [ year, setYear ] = useState(null);
   const [ month, setMonth ] = useState(null);
@@ -49,6 +50,7 @@ const MainPage = ({ onSignout }) => {
     setIsShowTime(false);
   }
 
+  // установка времени
   const handleSetDay = (data) => {
     const day = data.toString().length > 1 ? data : `0${data}`;
 
@@ -57,10 +59,11 @@ const MainPage = ({ onSignout }) => {
     setIsShowCalendar(false);
   }
 
+  // добавление новой задачи
   const handleAddTask = (e) => {
     e.preventDefault();
 
-    console.log(values)
+    setAllTasks([ ...allTasks, {'title': values.task, 'date': time} ]);
   }
 
   const handleChange = ({ target }) => {
@@ -118,7 +121,7 @@ const MainPage = ({ onSignout }) => {
             </div>
             <button
               className={cn(s.btn, s.btn_type_submit)}
-              disabled={time.date ? false : true}
+              disabled={(time.date && values.task.length) ? false : true}
               type="submit"
               >
               Add
@@ -127,7 +130,13 @@ const MainPage = ({ onSignout }) => {
         </form>
 
         <ul className={s.list}>
-          <Task value={'test task name and'} />
+          {allTasks.map(task =>
+            // {console.log(task)}
+            <Task
+              key={`${task.title}-${task.date.date}-${task.date.time}`}
+              data={task}
+            />
+          )}
         </ul>
       </Container>
     </>
