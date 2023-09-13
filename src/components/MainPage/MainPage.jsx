@@ -10,7 +10,7 @@ import dates from '../../utils/gateDate.js';
 
 const MainPage = ({ onSignout }) => {
   // состояние всех задач
-  const [ allTasks, setAllTasks ] = useState([]);
+  const [ allTasks, setAllTasks ] = useState(JSON.parse(localStorage.getItem('data')) || []);
   // состояние значения интупа
   const [ values, setValues ] = useState({'task': ''});
   // состояние значения года
@@ -37,6 +37,10 @@ const MainPage = ({ onSignout }) => {
     setToday(dates.getNumDay());
     setCalendar(dates.getAllDaysOfMonth());
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('data', JSON.stringify(allTasks))
+  }, [ allTasks ])
 
   // показать окно с календарем
   const handleShowTime = () => {
