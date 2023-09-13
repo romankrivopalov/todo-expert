@@ -4,6 +4,7 @@ import Header from '../Header/Header.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
 import Time from '../Time/Time.jsx';
 import Task from '../Task/Task.jsx';
+import Sort from '../Sort/Sort.jsx';
 import s from './MainPage.module.scss';
 import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
@@ -41,6 +42,10 @@ const MainPage = ({ onSignout }) => {
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(allTasks))
   }, [ allTasks ])
+
+  const handleSortTask = () => {
+
+  }
 
   // показать окно с календарем
   const handleShowTime = () => {
@@ -196,6 +201,8 @@ const MainPage = ({ onSignout }) => {
             </button>
           </div>
         </form>
+
+        {allTasks.length > 1 && <Sort handleSortTask={handleSortTask} />}
 
         <ul className={s.list}>
           {allTasks.map((task) =>

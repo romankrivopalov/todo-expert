@@ -1,0 +1,12 @@
+.sort {
+  margin: 16px 0 0 auto;
+  width: 33px;
+  height: 33px;
+  background-image: url('../../assets/icon-sort.svg');
+  background-color: var(--color-system-white);
+  background-position: center 2px;
+  background-repeat: no-repeat;
+  background-size: 20px;
+  border: 1px solid var(--color-system-gray-easy);
+  border-radius: 4px;
+}
