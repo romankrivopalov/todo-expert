@@ -44,7 +44,12 @@ const Task = ({ data, handleRemoveTask, handleEditTask, handleClearInput }) => {
         className={s.checkbox__label}
       />
       <div className={s.content}>
-        <input className={s.input} disabled={isDisabledInput} value={data.title} type="text" />
+        <input
+          className={s.input}
+          value={data.title}
+          type="text"
+          disabled
+        />
         <div className={s.wrapper}>
           <span className={s.date}>
             {data.date.date}{data.date.time && `: ${data.date.time}`}

@@ -18,7 +18,7 @@ const MainPage = ({ onSignout }) => {
   const [ isShowCalendar, setIsShowCalendar ] = useState(false);
   const [ isShowTime, setIsShowTime ] = useState(false);
   const [ time, setTime ] = useState({ date: null, time: null });
-  const [ isEditTask, setIsEditTask ] = useState(false);
+  const [ taskForEdit, setTaskForEdit ] = useState(null);
 
   useEffect(() => {
     setMonth(dates.getMonth());
@@ -35,6 +35,7 @@ const MainPage = ({ onSignout }) => {
     if (isShowCalendar) handleShowTime();
   }
 
+  // показать календарь
   const handleShowCalendar = () => {
     setIsShowCalendar(!isShowCalendar);
 
@@ -63,7 +64,7 @@ const MainPage = ({ onSignout }) => {
 
   // очистить значения формы
   const handleClearInput = () => {
-    setIsEditTask(false);
+    setTaskForEdit(null);
     setValues({'task': ''});
     handleClearTime();
 
@@ -73,13 +74,10 @@ const MainPage = ({ onSignout }) => {
 
   // редактирование задачи
   const handleEditTask = (data) => {
-    setIsEditTask(true);
+    setTaskForEdit(data);
 
     setValues({'task': data.title});
-    setTime({ ...time, date: data.date.date });
-    if (data.date.time) {
-      setTime({ ...time, time: data.date.time });
-    }
+    setTime({ date: data.date.date, time: data.date.time ? data.date.time : null });
   }
 
   // удаление задачи
@@ -93,10 +91,23 @@ const MainPage = ({ onSignout }) => {
   const handleAddTask = (e) => {
     e.preventDefault();
 
-    const index = (allTasks.length + values.task + time.date + time.time)
-    setAllTasks([ ...allTasks, {'index': index, 'title': values.task, 'date': time} ]);
+    // если есть элемент для редактирования
+    if (taskForEdit) {
+      setAllTasks(
+        allTasks.map(task => task.index === taskForEdit.index
+          ? {'index': taskForEdit.index, 'title': values.task, 'date': time}
+          : task
+        )
+      )
 
-    handleClearInput();
+      handleClearInput();
+    } else {
+      // генерация уникального индекса
+      const index = (allTasks.length + values.task + time.date + time.time)
+      setAllTasks([ ...allTasks, {'index': index, 'title': values.task, 'date': time} ]);
+
+      handleClearInput();
+    }
   }
 
   const handleChange = ({ target }) => {
@@ -159,7 +170,7 @@ const MainPage = ({ onSignout }) => {
               disabled={(time.date && values.task.length) ? false : true}
               type="submit"
               >
-              {!isEditTask ? "Add" : "Save"}
+              {!taskForEdit ? "Add" : "Save"}
             </button>
           </div>
         </form>
