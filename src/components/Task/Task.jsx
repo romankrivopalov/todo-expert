@@ -2,32 +2,43 @@ import { useState } from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
-const Task = ({ data, handleRemoveTask, handleEditTask, handleClearInput }) => {
+const Task = ({
+  data,
+  handleRemoveTask,
+  handleCopyTask,
+  handleEditTask,
+  handleClearInput
+}) => {
   const [ isCompliteTask, setIsCompliteTask ] = useState(false);
+  const [ isActiveCopyBtn, setIsActiveCopyBtn ] = useState(true);
   const [ isActiveEditBtn, setIsActiveEditBtn ] = useState(true);
-  const [ isDisabledInput, setIsDisabledInput ] = useState(true);
 
-  // переключение состояния инпута
-  const handleToggleDisabledInput = (value) => {
-    setIsDisabledInput(value ? value : !isDisabledInput);
+  // переключение состояния кнопки копирования
+  const handleTogleStateCopyBtn = () => {
+    setIsActiveCopyBtn(isActiveCopyBtn ? false : true);
+
+    if (isActiveCopyBtn) {
+      handleCopyTask(data)
+    } else { handleClearInput() }
   }
 
   // переключение состояния кнопки редактирования
   const handleTogleStateEditBtn = () => {
-    setIsActiveEditBtn(isDisabledInput ? false : true);
+    setIsActiveEditBtn(isActiveEditBtn ? false : true);
 
-    if (isDisabledInput) {
+    if (isActiveEditBtn) {
       handleEditTask(data)
-    } else {handleClearInput()}
-
-    handleToggleDisabledInput();
+    } else { handleClearInput() }
   }
 
   // переключение чекбокса
   const handleToggleChecbox = () => {
+    // переключение состояния выполненной задачи
     setIsCompliteTask(!isCompliteTask);
-    handleToggleDisabledInput(true);
+
     setIsActiveEditBtn(true);
+    setIsActiveCopyBtn(true);
+    handleClearInput()
   }
 
   return (
@@ -57,11 +68,12 @@ const Task = ({ data, handleRemoveTask, handleEditTask, handleClearInput }) => {
           <div className={s.btns}>
             <button
               disabled={isCompliteTask}
-              className={cn(s.btn, s.btn_type_copy)}
+              className={cn(s.btn, s.btn_type_copy, (!isActiveCopyBtn ? s.btn_active_copy : ''))}
+              onClick={() => handleTogleStateCopyBtn()}
             />
             <button
               disabled={isCompliteTask}
-              className={cn(s.btn, s.btn_type_edit, (!isActiveEditBtn ? s.btn_active : ''))}
+              className={cn(s.btn, s.btn_type_edit, (!isActiveEditBtn ? s.btn_active_edit : ''))}
               onClick={() => handleTogleStateEditBtn()}
             />
             <button

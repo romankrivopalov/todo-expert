@@ -9,17 +9,28 @@ import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
 
 const MainPage = ({ onSignout }) => {
+  // состояние всех задач
   const [ allTasks, setAllTasks ] = useState([]);
+  // состояние значения интупа
   const [ values, setValues ] = useState({'task': ''});
+  // состояние значения года
   const [ year, setYear ] = useState(null);
+  // состояние значения месяца
   const [ month, setMonth ] = useState(null);
+  // состояние значения текущей даты
   const [ today, setToday ] = useState(1);
+  // состояние значения календаря
   const [ calendar, setCalendar ] = useState([]);
+  // состояние значения открытого календаря
   const [ isShowCalendar, setIsShowCalendar ] = useState(false);
+  // состояние значения открытого окна выбора времени
   const [ isShowTime, setIsShowTime ] = useState(false);
+  // состояние значения выбранного времени
   const [ time, setTime ] = useState({ date: null, time: null });
+  // состояние значения элемента для редактирования
   const [ taskForEdit, setTaskForEdit ] = useState(null);
 
+  // получение данных о датах при монтировании компонента
   useEffect(() => {
     setMonth(dates.getMonth());
     setYear(dates.getYear());
@@ -72,6 +83,12 @@ const MainPage = ({ onSignout }) => {
     if (isShowTime) handleShowTime();
   }
 
+  // копирование задачи
+  const handleCopyTask = (data) => {
+    setValues({'task': data.title});
+    setTime({ date: data.date.date, time: data.date.time ? data.date.time : null });
+  }
+
   // редактирование задачи
   const handleEditTask = (data) => {
     setTaskForEdit(data);
@@ -110,6 +127,7 @@ const MainPage = ({ onSignout }) => {
     }
   }
 
+  // получение значение из инпута
   const handleChange = ({ target }) => {
     const { name, value } = target;
 
@@ -181,6 +199,7 @@ const MainPage = ({ onSignout }) => {
               key={`${task?.index}-${task.title}-${task.date.date}-${task.date.time}`}
               data={task}
               handleRemoveTask={handleRemoveTask}
+              handleCopyTask={handleCopyTask}
               handleEditTask={handleEditTask}
               handleClearInput={handleClearInput}
             />

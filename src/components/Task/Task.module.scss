@@ -119,7 +119,14 @@
     background-image: url('../../assets/icon-delete.svg');
   }
 
-  &_active {
+  &_active_copy {
+    color: var(--color-system-white);
+    background-image: url('../../assets/icon-copy-white.svg');
+    background-color: var(--color-system-blue);
+    border: none;
+  }
+
+  &_active_edit {
     color: var(--color-system-white);
     background-image: url('../../assets/icon-edit-white.svg');
     background-color: var(--color-system-blue);
