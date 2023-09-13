@@ -57,8 +57,10 @@ const MainPage = ({ onSignout }) => {
     setIsShowCalendar(false);
   }
 
-  const handleAddTask = () => {
+  const handleAddTask = (e) => {
+    e.preventDefault();
 
+    console.log(values)
   }
 
   const handleChange = ({ target }) => {
@@ -72,7 +74,7 @@ const MainPage = ({ onSignout }) => {
       <Header onSignout={onSignout} />
 
       <Container>
-        <form className={s.form}>
+        <form className={s.form} onSubmit={handleAddTask}>
           <input
             className={s.input}
             name="task"
@@ -114,7 +116,11 @@ const MainPage = ({ onSignout }) => {
               />
 
             </div>
-            <button className={cn(s.btn, s.btn_type_submit)}>
+            <button
+              className={cn(s.btn, s.btn_type_submit)}
+              disabled={time.date ? false : true}
+              type="submit"
+              >
               Add
             </button>
           </div>

@@ -28,8 +28,17 @@ const Task = ({ value }) => {
 
   return (
     <li className={s.task}>
-      <input type="checkbox" checked={isCompliteTask} className={s.checkbox} />
-      <label className={s.checkbox__label} onClick={handleToggleChecbox}></label>
+      <input
+        id="item-checkbox"
+        type="checkbox"
+        checked={isCompliteTask}
+        onChange={handleToggleChecbox}
+        className={s.checkbox}
+      />
+      <label
+        htmlFor="item-checkbox"
+        className={s.checkbox__label}
+      />
       <div className={s.content}>
         <input className={s.input} disabled={isDisabledInput} value={value} type="text" />
         <div className={s.wrapper}>
