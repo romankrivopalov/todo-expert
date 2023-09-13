@@ -5,6 +5,7 @@ import Calendar from '../Calendar/Calendar.jsx';
 import s from './MainPage.module.scss';
 import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
+import Time from '../Time/Time.jsx';
 
 const MainPage = ({ onSignout }) => {
   const [ values, setValues ] = useState({'task': ''});
@@ -106,16 +107,11 @@ const MainPage = ({ onSignout }) => {
                 handleSetDay={handleSetDay}
               />
 
-              <ul className={cn(s.time, isShowTime ? s.time_show : '')}>
-                <li className={s.hours} onClick={() => handleSetTime('03:00')}>03:00 AM</li>
-                <li className={s.hours} onClick={() => handleSetTime('06:00')}>06:00 AM</li>
-                <li className={s.hours} onClick={() => handleSetTime('09:00')}>09:00 AM</li>
-                <li className={s.hours} onClick={() => handleSetTime('12:00')}>12:00 AM</li>
-                <li className={s.hours} onClick={() => handleSetTime('03:00')}>03:00 PM</li>
-                <li className={s.hours} onClick={() => handleSetTime('06:00')}>06:00 PM</li>
-                <li className={s.hours} onClick={() => handleSetTime('09:00')}>09:00 PM</li>
-                <li className={s.hours} onClick={() => handleSetTime('12:00')}>12:00 PM</li>
-              </ul>
+              <Time
+                isShowTime={isShowTime}
+                handleSetTime={handleSetTime}
+              />
+
             </div>
             <button className={cn(s.btn, s.btn_type_submit)}>
               Add

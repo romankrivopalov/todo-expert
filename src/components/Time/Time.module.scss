@@ -1,0 +1,35 @@
+.time {
+  position: absolute;
+  top: -8px;
+  left: 80px;
+  margin: 0;
+  padding: 16px;
+  display: none;
+  flex-direction: row;
+  gap: 8px;
+  flex-wrap: wrap;
+  width: 152px;
+  background-color: var(--color-system-white);
+  box-shadow: 0px 0px 8px var(--color-system-gray-easy);
+  border-radius: 4px;
+
+  &_show {
+    display: flex;
+  }
+}
+
+.hours {
+  margin: 0;
+  padding: 8px;
+  width: 56px;
+  font-size: 13px;
+  border: 1px solid var(--color-system-gray-easy);
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-system-white);
+    background-color: var(--color-system-blue);
+  }
+}
