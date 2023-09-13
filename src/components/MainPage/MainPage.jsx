@@ -18,6 +18,7 @@ const MainPage = ({ onSignout }) => {
   const [ isShowCalendar, setIsShowCalendar ] = useState(false);
   const [ isShowTime, setIsShowTime ] = useState(false);
   const [ time, setTime ] = useState({ date: null, time: null });
+  const [ isEditTask, setIsEditTask ] = useState(false);
 
   useEffect(() => {
     setMonth(dates.getMonth());
@@ -60,8 +61,9 @@ const MainPage = ({ onSignout }) => {
     setIsShowCalendar(false);
   }
 
-  // очистить значения после добавления задачи
+  // очистить значения формы
   const handleClearInput = () => {
+    setIsEditTask(false);
     setValues({'task': ''});
     handleClearTime();
 
@@ -69,9 +71,19 @@ const MainPage = ({ onSignout }) => {
     if (isShowTime) handleShowTime();
   }
 
+  // редактирование задачи
+  const handleEditTask = (data) => {
+    setIsEditTask(true);
+
+    setValues({'task': data.title});
+    setTime({ ...time, date: data.date.date });
+    if (data.date.time) {
+      setTime({ ...time, time: data.date.time });
+    }
+  }
+
   // удаление задачи
   const handleRemoveTask = (data) => {
-
     setAllTasks(allTasks.filter(item =>
       item.index !== data.index
     ));
@@ -147,7 +159,7 @@ const MainPage = ({ onSignout }) => {
               disabled={(time.date && values.task.length) ? false : true}
               type="submit"
               >
-              Add
+              {!isEditTask ? "Add" : "Save"}
             </button>
           </div>
         </form>
@@ -158,6 +170,8 @@ const MainPage = ({ onSignout }) => {
               key={`${task?.index}-${task.title}-${task.date.date}-${task.date.time}`}
               data={task}
               handleRemoveTask={handleRemoveTask}
+              handleEditTask={handleEditTask}
+              handleClearInput={handleClearInput}
             />
           )}
         </ul>

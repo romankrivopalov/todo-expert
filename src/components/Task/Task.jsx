@@ -2,7 +2,7 @@ import { useState } from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
-const Task = ({ data, handleRemoveTask }) => {
+const Task = ({ data, handleRemoveTask, handleEditTask, handleClearInput }) => {
   const [ isCompliteTask, setIsCompliteTask ] = useState(false);
   const [ isActiveEditBtn, setIsActiveEditBtn ] = useState(true);
   const [ isDisabledInput, setIsDisabledInput ] = useState(true);
@@ -15,6 +15,10 @@ const Task = ({ data, handleRemoveTask }) => {
   // переключение состояния кнопки редактирования
   const handleTogleStateEditBtn = () => {
     setIsActiveEditBtn(isDisabledInput ? false : true);
+
+    if (isDisabledInput) {
+      handleEditTask(data)
+    } else {handleClearInput()}
 
     handleToggleDisabledInput();
   }
