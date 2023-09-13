@@ -2,10 +2,11 @@ import { useEffect, useState } from 'react';
 import Container from '../Container/Container.jsx';
 import Header from '../Header/Header.jsx';
 import Calendar from '../Calendar/Calendar.jsx';
+import Time from '../Time/Time.jsx';
+import Task from '../Task/Task.jsx';
 import s from './MainPage.module.scss';
 import cn from 'classnames';
 import dates from '../../utils/gateDate.js';
-import Time from '../Time/Time.jsx';
 
 const MainPage = ({ onSignout }) => {
   const [ values, setValues ] = useState({'task': ''});
@@ -118,6 +119,10 @@ const MainPage = ({ onSignout }) => {
             </button>
           </div>
         </form>
+
+        <ul className={s.list}>
+          <Task value={'test task name and'} />
+        </ul>
       </Container>
     </>
   )
