@@ -31,17 +31,18 @@ const MainPage = ({ onSignout }) => {
     setIsShowTime(!isShowTime);
 
     // закрытие окна при повторном нажатии
-    if (isShowCalendar) {
-      handleShowTime();
-    }
+    if (isShowCalendar) handleShowTime();
   }
 
   const handleShowCalendar = () => {
     setIsShowCalendar(!isShowCalendar);
 
-    if (isShowTime) {
-      handleShowTime();
-    }
+    if (isShowTime) handleShowTime();
+  }
+
+  // очистить время
+  const handleClearTime = () => {
+    setTime({ date: null, time: null })
   }
 
   const handleSetTime = (data) => {
@@ -59,11 +60,31 @@ const MainPage = ({ onSignout }) => {
     setIsShowCalendar(false);
   }
 
+  // очистить значения после добавления задачи
+  const handleClearInput = () => {
+    setValues({'task': ''});
+    handleClearTime();
+
+    if (isShowCalendar) handleShowCalendar();
+    if (isShowTime) handleShowTime();
+  }
+
+  // удаление задачи
+  const handleRemoveTask = (data) => {
+
+    setAllTasks(allTasks.filter(item =>
+      item.index !== data.index
+    ));
+  }
+
   // добавление новой задачи
   const handleAddTask = (e) => {
     e.preventDefault();
 
-    setAllTasks([ ...allTasks, {'title': values.task, 'date': time} ]);
+    const index = (allTasks.length + values.task + time.date + time.time)
+    setAllTasks([ ...allTasks, {'index': index, 'title': values.task, 'date': time} ]);
+
+    handleClearInput();
   }
 
   const handleChange = ({ target }) => {
@@ -82,6 +103,7 @@ const MainPage = ({ onSignout }) => {
             className={s.input}
             name="task"
             type="text"
+            value={values.task}
             onChange={handleChange}
             placeholder="add task"
           />
@@ -95,10 +117,11 @@ const MainPage = ({ onSignout }) => {
                 className={cn(s.btn, s.btn_type_time)}
                 onClick={handleShowTime}
                 type="button" />
-              {(time.date || time.time) &&
+                {(time.date || time.time) &&
                 <button
                   className={s.btn}
                   type='button'
+                  onClick={() => handleClearTime()}
                 >
                   {time.date} {time.date && time.time ? ':' : ''} {time.time}
                 </button>
@@ -130,11 +153,11 @@ const MainPage = ({ onSignout }) => {
         </form>
 
         <ul className={s.list}>
-          {allTasks.map(task =>
-            // {console.log(task)}
+          {allTasks.map((task) =>
             <Task
-              key={`${task.title}-${task.date.date}-${task.date.time}`}
+              key={`${task?.index}-${task.title}-${task.date.date}-${task.date.time}`}
               data={task}
+              handleRemoveTask={handleRemoveTask}
             />
           )}
         </ul>

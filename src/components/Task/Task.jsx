@@ -2,7 +2,7 @@ import { useState } from 'react';
 import s from './Task.module.scss';
 import cn from 'classnames';
 
-const Task = ({ data }) => {
+const Task = ({ data, handleRemoveTask }) => {
   const [ isCompliteTask, setIsCompliteTask ] = useState(false);
   const [ isActiveEditBtn, setIsActiveEditBtn ] = useState(true);
   const [ isDisabledInput, setIsDisabledInput ] = useState(true);
@@ -43,7 +43,6 @@ const Task = ({ data }) => {
         <input className={s.input} disabled={isDisabledInput} value={data.title} type="text" />
         <div className={s.wrapper}>
           <span className={s.date}>
-            {/* {console.log(data)} */}
             {data.date.date}{data.date.time && `: ${data.date.time}`}
           </span>
           <div className={s.btns}>
@@ -59,6 +58,7 @@ const Task = ({ data }) => {
             <button
               disabled={isCompliteTask}
               className={cn(s.btn, s.btn_type_delete)}
+              onClick={() => handleRemoveTask(data)}
             />
           </div>
         </div>
