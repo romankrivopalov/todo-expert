@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
@@ -34,6 +34,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path='*' element={<Navigate to='/' replace={true} />} />
 
       <Route
         path='/'
