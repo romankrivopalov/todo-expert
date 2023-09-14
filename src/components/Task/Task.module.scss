@@ -73,6 +73,10 @@
   &:focus {
     outline: none;
   }
+
+  &:disabled {
+    background-color: inherit;
+  }
 }
 
 .btns {

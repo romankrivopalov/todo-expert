@@ -4,9 +4,20 @@
   height: 33px;
   background-image: url('../../assets/icon-sort.svg');
   background-color: var(--color-system-white);
-  background-position: center 2px;
+  background-position: center;
   background-repeat: no-repeat;
   background-size: 20px;
   border: 1px solid var(--color-system-gray-easy);
   border-radius: 4px;
+
+  &_active {
+    background-image: url('../../assets/icon-sort-white.svg');
+    background-color: var(--color-system-blue);
+    border: none;
+  }
+
+  &_reverse {
+    transform: rotate(180deg);
+    background-position: center;
+  }
 }

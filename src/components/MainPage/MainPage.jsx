@@ -30,6 +30,7 @@ const MainPage = ({ onSignout }) => {
   const [ time, setTime ] = useState({ date: null, time: null });
   // состояние значения элемента для редактирования
   const [ taskForEdit, setTaskForEdit ] = useState(null);
+  const [ isActiveSortBtn, setIsActiveSortBtn ] = useState(false);
 
   // получение данных о датах при монтировании компонента
   useEffect(() => {
@@ -41,10 +42,22 @@ const MainPage = ({ onSignout }) => {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(allTasks))
-  }, [ allTasks ])
+  }, [allTasks])
 
-  const handleSortTask = () => {
+  // сортировка элементов
+  const handleSortTask = (reverse) => {
+    // сортировка существующего массива
+    const res = allTasks.sort((a, b) => {
+      return (b.date.date.split(".").reverse().join("") < a.date.date.split(".").reverse().join(""))
+        - (a.date.date.split(".").reverse().join("") < b.date.date.split(".").reverse().join(""));
+    })
 
+    // при условии reverse передача отсортированного массива через map
+    if (reverse) {
+      setAllTasks(res.map(item => item))
+    } else {
+      setAllTasks(res.reverse().map(item => item))
+    }
   }
 
   // показать окно с календарем
@@ -116,6 +129,7 @@ const MainPage = ({ onSignout }) => {
   // добавление новой задачи
   const handleAddTask = (e) => {
     e.preventDefault();
+    handleDisabledSort();
 
     // если есть элемент для редактирования
     if (taskForEdit) {
@@ -134,6 +148,11 @@ const MainPage = ({ onSignout }) => {
 
       handleClearInput();
     }
+  }
+
+  // выключить кнопку сортировки
+  const handleDisabledSort = () => {
+    setIsActiveSortBtn(false);
   }
 
   // получение значение из инпута
@@ -202,7 +221,14 @@ const MainPage = ({ onSignout }) => {
           </div>
         </form>
 
-        {allTasks.length > 1 && <Sort handleSortTask={handleSortTask} />}
+        {allTasks.length > 1 &&
+          <Sort
+            handleSortTask={handleSortTask}
+            isActiveSortBtn={isActiveSortBtn}
+            setIsActiveSortBtn={setIsActiveSortBtn}
+            handleDisabledSort={handleDisabledSort}
+          />
+        }
 
         <ul className={s.list}>
           {allTasks.map((task) =>

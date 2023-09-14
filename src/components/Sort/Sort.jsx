@@ -1,15 +1,29 @@
+import { useState } from 'react';
 import s from './Sort.module.scss';
+import cn from 'classnames';
 
-const Sort = ({handleSortTask}) => {
+const Sort = ({
+  handleSortTask,
+  isActiveSortBtn,
+  setIsActiveSortBtn
+}) => {
+  const [ isReverse, setIsSorted ] = useState(false);
 
-  const toggleSortBtn = () => {
-    handleSortTask()
+  const handleEnableSort = () => {
+    if (isActiveSortBtn) {
+      setIsSorted(!isReverse);
+      handleSortTask(!isReverse);
+    } else {
+      handleSortTask(isReverse);
+    }
+
+    setIsActiveSortBtn(true);
   }
 
   return (
     <button
-      className={s.sort}
-      onClick={() => toggleSortBtn()}
+      className={cn(s.sort, isActiveSortBtn && s.sort_active, isReverse && s.sort_reverse)}
+      onClick={() => handleEnableSort()}
     />
   )
 }
