@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/todo-expert/static/css/main.2add20aa.css",
-    "main.js": "/todo-expert/static/js/main.de4516e8.js",
+    "main.css": "/todo-expert/static/css/main.f638658d.css",
+    "main.js": "/todo-expert/static/js/main.3a42a066.js",
     "static/media/Roboto-Bold.woff": "/todo-expert/static/media/Roboto-Bold.3f2cbde6b72e8d05669f.woff",
     "static/media/Roboto-Bold.woff2": "/todo-expert/static/media/Roboto-Bold.6cd35edfbc0d7a417131.woff2",
     "static/media/Roboto-Regular.woff2": "/todo-expert/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
@@ -14,16 +14,16 @@
     "static/media/icon-sort-white.svg": "/todo-expert/static/media/icon-sort-white.fde0f7ccc14fc1330319.svg",
     "static/media/icon-sort.svg": "/todo-expert/static/media/icon-sort.624c39f80854259510e2.svg",
     "static/media/icon-check.svg": "/todo-expert/static/media/icon-check.6f9b8f044e8efc3afdfc.svg",
+    "static/media/icon-edit.svg": "/todo-expert/static/media/icon-edit.4ac866085086477da552.svg",
     "static/media/icon-logout.svg": "/todo-expert/static/media/icon-logout.80b0290ebce3f6d37c58d243b87d3031.svg",
-    "static/media/icon-edit.svg": "/todo-expert/static/media/icon-edit.25810d851a741e4372f4.svg",
-    "static/media/icon-copy.svg": "/todo-expert/static/media/icon-copy.e1789dd4c44ed34ef56a.svg",
-    "static/media/icon-delete.svg": "/todo-expert/static/media/icon-delete.98bc9a7e5806d11a1183.svg",
-    "static/media/icon-time.svg": "/todo-expert/static/media/icon-time.55b81e819f12f727805b.svg",
-    "main.2add20aa.css.map": "/todo-expert/static/css/main.2add20aa.css.map",
-    "main.de4516e8.js.map": "/todo-expert/static/js/main.de4516e8.js.map"
+    "static/media/icon-copy.svg": "/todo-expert/static/media/icon-copy.66de377c4b8a638cfd5a.svg",
+    "static/media/icon-delete.svg": "/todo-expert/static/media/icon-delete.ee6024febcd1ca0f0dbf.svg",
+    "static/media/icon-time.svg": "/todo-expert/static/media/icon-time.ab91cb9375c4e8cd2b1c.svg",
+    "main.f638658d.css.map": "/todo-expert/static/css/main.f638658d.css.map",
+    "main.3a42a066.js.map": "/todo-expert/static/js/main.3a42a066.js.map"
   },
   "entrypoints": [
-    "static/css/main.2add20aa.css",
-    "static/js/main.de4516e8.js"
+    "static/css/main.f638658d.css",
+    "static/js/main.3a42a066.js"
   ]
 }
