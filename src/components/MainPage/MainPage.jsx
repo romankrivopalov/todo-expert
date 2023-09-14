@@ -30,6 +30,7 @@ const MainPage = ({ onSignout }) => {
   const [ time, setTime ] = useState({ date: null, time: null });
   // состояние значения элемента для редактирования
   const [ taskForEdit, setTaskForEdit ] = useState(null);
+  // состояние значения кнопки сортировки
   const [ isActiveSortBtn, setIsActiveSortBtn ] = useState(false);
 
   // получение данных о датах при монтировании компонента
@@ -42,7 +43,44 @@ const MainPage = ({ onSignout }) => {
 
   useEffect(() => {
     localStorage.setItem('data', JSON.stringify(allTasks))
-  }, [allTasks])
+  }, [allTasks]);
+
+  // показ уведомлений, при монтироваии страницы
+  useEffect(() => {
+    if (month && today) {
+      const allMonthTasks = allTasks.filter(task => task.date.date?.substring(3, 5) === month.num);
+      const todayTasks = allTasks.filter(task => task.date.date?.substring(0, 2) === today.toString());
+      const tomorrowTasks = allTasks.filter(task => task.date.date?.substring(0, 2) === (today + 1).toString());
+
+      // проверка месяца задачи и списка задач на текущую дату
+      if (allMonthTasks && todayTasks.length) {
+        Notification.requestPermission().then(perm => {
+          if (perm === 'granted') {
+            const notification = new Notification('Time to do things!', {
+                body: `the deadline for completing ${todayTasks.length} ${todayTasks.length > 1 ? 'tasks' : 'task'} expires today`,
+            })
+
+            notification.addEventListener('error', () => {
+                alert('error')
+            })
+          }
+        })
+      // проверка месяца задачи и списка задач на дату завтрашнего дня
+      } else if (allMonthTasks && tomorrowTasks.length) {
+        Notification.requestPermission().then(perm => {
+          if (perm === 'granted') {
+            const notification = new Notification("Don't put things off", {
+                body: `the deadline for completing ${tomorrowTasks.length} ${tomorrowTasks.length > 1 ? 'tasks' : 'task'} expires tomorrow`,
+            })
+
+            notification.addEventListener('error', () => {
+                alert('error')
+            })
+          }
+        })
+      }
+    }
+  }, [month, today]);
 
   // сортировка элементов
   const handleSortTask = (reverse) => {
