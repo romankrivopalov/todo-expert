@@ -18,7 +18,7 @@
     "type": "git",
     "url": "git+https://github.com/romankrivopalov/todo-expert.git"
   },
-  "homepage": "https://github.com/romankrivopalov/todo-expert#readme",
+  "homepage": "https://romankrivopalov.github.io/todo-expert/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
