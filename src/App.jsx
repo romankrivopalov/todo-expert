@@ -34,8 +34,6 @@ function App() {
 
   return (
     <Routes>
-      <Route path='*' element={<Navigate to='/' replace={true} />} />
-
       <Route
         path='/'
         element={<ProtectedRoute
@@ -47,29 +45,21 @@ function App() {
 
       <Route
         path='/signin'
-        element={ userJwtInLocalStorage
-          ?
-            <Login
-              navigate={navigate}
-              setCurrentUser={setLoggedIn}
-            />
-          :
-            <Navigate to='/' />
+        element={
+          <Login
+            navigate={navigate}
+            setCurrentUser={setLoggedIn}
+          />
         }
       />
 
-
-
       <Route
         path='/signup'
-        element={ userJwtInLocalStorage
-          ?
-            <Register
-              navigate={navigate}
-              setCurrentUser={setLoggedIn}
-            />
-          :
-            <Navigate to='/' />
+        element={
+          <Register
+            navigate={navigate}
+            setCurrentUser={setLoggedIn}
+          />
         }
       />
 
