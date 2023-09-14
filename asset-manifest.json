@@ -1,29 +1,29 @@
 {
   "files": {
-    "main.css": "/romankrivopalov/todo-expert/static/css/main.40402c8d.css",
-    "main.js": "/romankrivopalov/todo-expert/static/js/main.3a1620af.js",
-    "static/media/Roboto-Bold.woff": "/romankrivopalov/todo-expert/static/media/Roboto-Bold.3f2cbde6b72e8d05669f.woff",
-    "static/media/Roboto-Bold.woff2": "/romankrivopalov/todo-expert/static/media/Roboto-Bold.6cd35edfbc0d7a417131.woff2",
-    "static/media/Roboto-Regular.woff2": "/romankrivopalov/todo-expert/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
-    "static/media/icon-date.svg": "/romankrivopalov/todo-expert/static/media/icon-date.6226b07e6fe53a02a869.svg",
-    "static/media/icon-info.svg": "/romankrivopalov/todo-expert/static/media/icon-info.5d80d26404e1170145e0.svg",
-    "static/media/icon-logo-white.svg": "/romankrivopalov/todo-expert/static/media/icon-logo-white.47923846438e2c4cd14ec8e9dadf76a5.svg",
-    "static/media/icon-edit-white.svg": "/romankrivopalov/todo-expert/static/media/icon-edit-white.1ea09eb1c039cc3bb6bb.svg",
-    "index.html": "/romankrivopalov/todo-expert/index.html",
-    "static/media/icon-copy-white.svg": "/romankrivopalov/todo-expert/static/media/icon-copy-white.810643665265a3a4b94c.svg",
-    "static/media/icon-sort-white.svg": "/romankrivopalov/todo-expert/static/media/icon-sort-white.fde0f7ccc14fc1330319.svg",
-    "static/media/icon-sort.svg": "/romankrivopalov/todo-expert/static/media/icon-sort.624c39f80854259510e2.svg",
-    "static/media/icon-check.svg": "/romankrivopalov/todo-expert/static/media/icon-check.6f9b8f044e8efc3afdfc.svg",
-    "static/media/icon-logout.svg": "/romankrivopalov/todo-expert/static/media/icon-logout.80b0290ebce3f6d37c58d243b87d3031.svg",
-    "static/media/icon-edit.svg": "/romankrivopalov/todo-expert/static/media/icon-edit.25810d851a741e4372f4.svg",
-    "static/media/icon-copy.svg": "/romankrivopalov/todo-expert/static/media/icon-copy.e1789dd4c44ed34ef56a.svg",
-    "static/media/icon-delete.svg": "/romankrivopalov/todo-expert/static/media/icon-delete.98bc9a7e5806d11a1183.svg",
-    "static/media/icon-time.svg": "/romankrivopalov/todo-expert/static/media/icon-time.55b81e819f12f727805b.svg",
-    "main.40402c8d.css.map": "/romankrivopalov/todo-expert/static/css/main.40402c8d.css.map",
-    "main.3a1620af.js.map": "/romankrivopalov/todo-expert/static/js/main.3a1620af.js.map"
+    "main.css": "/todo-expert/static/css/main.2add20aa.css",
+    "main.js": "/todo-expert/static/js/main.673a52c0.js",
+    "static/media/Roboto-Bold.woff": "/todo-expert/static/media/Roboto-Bold.3f2cbde6b72e8d05669f.woff",
+    "static/media/Roboto-Bold.woff2": "/todo-expert/static/media/Roboto-Bold.6cd35edfbc0d7a417131.woff2",
+    "static/media/Roboto-Regular.woff2": "/todo-expert/static/media/Roboto-Regular.a25806274237d06e00a6.woff2",
+    "static/media/icon-date.svg": "/todo-expert/static/media/icon-date.6226b07e6fe53a02a869.svg",
+    "static/media/icon-info.svg": "/todo-expert/static/media/icon-info.5d80d26404e1170145e0.svg",
+    "static/media/icon-logo-white.svg": "/todo-expert/static/media/icon-logo-white.47923846438e2c4cd14ec8e9dadf76a5.svg",
+    "static/media/icon-edit-white.svg": "/todo-expert/static/media/icon-edit-white.1ea09eb1c039cc3bb6bb.svg",
+    "static/media/icon-copy-white.svg": "/todo-expert/static/media/icon-copy-white.810643665265a3a4b94c.svg",
+    "index.html": "/todo-expert/index.html",
+    "static/media/icon-sort-white.svg": "/todo-expert/static/media/icon-sort-white.fde0f7ccc14fc1330319.svg",
+    "static/media/icon-sort.svg": "/todo-expert/static/media/icon-sort.624c39f80854259510e2.svg",
+    "static/media/icon-check.svg": "/todo-expert/static/media/icon-check.6f9b8f044e8efc3afdfc.svg",
+    "static/media/icon-logout.svg": "/todo-expert/static/media/icon-logout.80b0290ebce3f6d37c58d243b87d3031.svg",
+    "static/media/icon-edit.svg": "/todo-expert/static/media/icon-edit.25810d851a741e4372f4.svg",
+    "static/media/icon-copy.svg": "/todo-expert/static/media/icon-copy.e1789dd4c44ed34ef56a.svg",
+    "static/media/icon-delete.svg": "/todo-expert/static/media/icon-delete.98bc9a7e5806d11a1183.svg",
+    "static/media/icon-time.svg": "/todo-expert/static/media/icon-time.55b81e819f12f727805b.svg",
+    "main.2add20aa.css.map": "/todo-expert/static/css/main.2add20aa.css.map",
+    "main.673a52c0.js.map": "/todo-expert/static/js/main.673a52c0.js.map"
   },
   "entrypoints": [
-    "static/css/main.40402c8d.css",
-    "static/js/main.3a1620af.js"
+    "static/css/main.2add20aa.css",
+    "static/js/main.673a52c0.js"
   ]
 }
