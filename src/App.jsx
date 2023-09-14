@@ -47,18 +47,30 @@ function App() {
 
       <Route
         path='/signin'
-        element={<Login
-          navigate={navigate}
-          setCurrentUser={setLoggedIn}
-        />}
+        element={ userJwtInLocalStorage
+          ?
+            <Login
+              navigate={navigate}
+              setCurrentUser={setLoggedIn}
+            />
+          :
+            <Navigate to='/' />
+        }
       />
+
+
 
       <Route
         path='/signup'
-        element={<Register
-          navigate={navigate}
-          setCurrentUser={setLoggedIn}
-        />}
+        element={ userJwtInLocalStorage
+          ?
+            <Register
+              navigate={navigate}
+              setCurrentUser={setLoggedIn}
+            />
+          :
+            <Navigate to='/' />
+        }
       />
 
     </Routes>
